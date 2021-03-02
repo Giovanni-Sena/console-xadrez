@@ -15,5 +15,10 @@
         {
             return pecas[linha, coluna];
         }
+        public void incluirPeca(Peca pe, Posicao po)
+        {
+            pecas[po.Linha, po.Coluna] = pe;
+            pe.posicao = po;
+        }
     }
 }
