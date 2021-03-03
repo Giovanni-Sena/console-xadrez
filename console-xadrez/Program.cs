@@ -10,10 +10,7 @@ namespace console_xadrez
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
-                tab.incluirPeca(new Torre(tab, Cor.Preto), new Posicao(0, 0));
-                tab.incluirPeca(new Torre(tab, Cor.Preto), new Posicao(0, 7));
-                Tela.impTabuleiro(tab);
+                
             }
             catch (TabuleiroException tEx)
             {
