@@ -28,6 +28,13 @@ namespace console_xadrez
             }
             Console.WriteLine("  A B C D E F G H");
         }
+        public static PosicaoXadrez recebePosicaoXadrez()
+        {
+            string recebe = Console.ReadLine();
+            char coluna = recebe[0];
+            int linha = int.Parse(recebe[1] + "");
+            return new PosicaoXadrez(coluna,linha);
+        }
         public static void mudarCor(Peca peca)
         {
             if (peca.cor == Cor.Branco)

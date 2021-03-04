@@ -33,6 +33,17 @@
             pecas[po.linha, po.coluna] = pe;
             pe.posicao = po;
         }
+        public Peca removerPeca(Posicao pos)
+        {
+            if (peca(pos) == null)
+            {
+                return null;
+            }
+            Peca auxRP = peca(pos);
+            auxRP.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+            return auxRP;
+        }
         public bool posicaoValida(Posicao pos)
         {
             if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas)

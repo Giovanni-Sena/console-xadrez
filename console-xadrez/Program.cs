@@ -10,11 +10,21 @@ namespace console_xadrez
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
-                tab.incluirPeca(new Torre(tab, Cor.Preto), new Posicao(0, 0));
-                tab.incluirPeca(new Torre(tab, Cor.Preto), new Posicao(0, 7));
-                tab.incluirPeca(new Rei(tab, Cor.Branco), new Posicao(2, 7));
-                Tela.impTabuleiro(tab);
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+                while (!partida.finalizada)
+                {
+                    Console.Clear();
+                    Tela.impTabuleiro(partida.tabu);
+                    Console.WriteLine();
+                    Console.Write("Informe a posição conforme exemplo (a1).");
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.Write("Posição de origem: ");
+                    Posicao origem = Tela.recebePosicaoXadrez().convertePosicao();
+                    Console.Write("Posição de destino: ");
+                    Posicao destino = Tela.recebePosicaoXadrez().convertePosicao();
+                    partida.movimento(origem, destino);
+                }
             }
             catch (TabuleiroException tEx)
             {
