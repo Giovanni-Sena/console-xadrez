@@ -17,6 +17,10 @@
         {
             qtdMovimentos ++;
         }
+        public void atualizarQtdMovimentosRetroativo()
+        {
+            qtdMovimentos--;
+        }
         public bool existeMovimentosPossiveis()
         {
             bool[,] mat = movimentosPossiveis();

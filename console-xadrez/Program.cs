@@ -17,8 +17,6 @@ namespace console_xadrez
                     {
                         Console.Clear();
                         Tela.impPartida(partida);
-                        Console.WriteLine();
-                        Console.WriteLine();
                         Console.Write("Posição de origem: ");
                         Posicao origem = Tela.recebePosicaoXadrez().convertePosicao();
                         partida.validarOrigem(origem);
@@ -27,7 +25,7 @@ namespace console_xadrez
                         Tela.impTabuleiro(partida.tabu, possicoesPossiveis);
                         Console.Write("Posição de destino: ");
                         Posicao destino = Tela.recebePosicaoXadrez().convertePosicao();
-                        partida.vaidarDestino(origem, destino);
+                        partida.validarDestino(origem, destino);
                         partida.movimentoJogada(origem, destino);
                     }
                     catch (TabuleiroException e)
