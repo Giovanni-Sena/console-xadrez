@@ -7,6 +7,39 @@ namespace console_xadrez
 {
      class Tela
     {
+        public static void impPartida(PartidaDeXadrez partida)
+        {
+            impTabuleiro(partida.tabu);
+            Console.WriteLine();
+            impPecasCapturadas(partida);
+            Console.WriteLine();
+            Console.WriteLine($"Turno: {partida.turno}");
+            Console.WriteLine();
+            Console.WriteLine($"Aguardando jogada: {partida.jogador}");
+            Console.Write("Informe a posição conforme exemplo (a1).");
+
+        }
+        public static void impPecasCapturadas(PartidaDeXadrez partida)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write($"Branco: ");
+            impConjunto(partida.pecasCapturada(Cor.Branco));
+            Console.WriteLine();
+            Console.Write($"Preto: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            impConjunto(partida.pecasCapturada(Cor.Preto));
+            Console.ForegroundColor = aux;
+        }
+        public static void impConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach(Peca x in conjunto)
+            {
+                Console.Write($"{x} ");
+            }
+            Console.Write("]");
+        }
         public static void impTabuleiro( Tabuleiro tabu)
         {
             for (int l = 0; l < tabu.linhas; l++)

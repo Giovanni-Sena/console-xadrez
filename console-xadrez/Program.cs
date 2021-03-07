@@ -16,11 +16,7 @@ namespace console_xadrez
                     try
                     {
                         Console.Clear();
-                        Tela.impTabuleiro(partida.tabu);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turno: {partida.turno}");
-                        Console.WriteLine($"Aguardando jogada: {partida.jogador}");
-                        Console.Write("Informe a posição conforme exemplo (a1).");
+                        Tela.impPartida(partida);
                         Console.WriteLine();
                         Console.WriteLine();
                         Console.Write("Posição de origem: ");
