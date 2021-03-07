@@ -20,13 +20,13 @@ namespace xadrez
         {
             bool[,] mat = new bool[tabu.linhas, tabu.colunas];
             Posicao pos = new Posicao(0, 0);
-            // Posição superior
+            // Posição diagonal direita
             pos.possibilidadeDeMovimentos(posicao.linha -1, posicao.coluna);
             if(tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            // Posição diagonal direita superior
+            // Posição diagonal esquerda 
             pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna + 1);
             if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
