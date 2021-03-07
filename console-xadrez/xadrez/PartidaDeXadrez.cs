@@ -25,7 +25,8 @@ namespace xadrez
         }
         private void incluirPecas()
         {
-            tabu.incluirPeca(new Torre(tabu, Cor.Preto), new PosicaoXadrez('c',1).convertePosicao());
+            tabu.incluirPeca(new Torre(tabu, Cor.Preto), new PosicaoXadrez('c',5).convertePosicao());
+            tabu.incluirPeca(new Rei(tabu, Cor.Branco), new PosicaoXadrez('c', 3).convertePosicao());
         }
     }
 }
