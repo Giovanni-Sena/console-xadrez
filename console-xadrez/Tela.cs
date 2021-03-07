@@ -15,11 +15,19 @@ namespace console_xadrez
             Console.WriteLine();
             Console.WriteLine($"Turno: {partida.turno}");
             Console.WriteLine();
-            if (partida.xeque)
+            if (!partida.finalizada)
             {
-                Console.WriteLine("Xeque!");
+                Console.WriteLine($"Aguardando jogada: {partida.jogador}");
+                if (partida.xeque)
+                {
+                    Console.WriteLine("Xeque!");
+                }
             }
-            Console.WriteLine($"Aguardando jogada: {partida.jogador}");
+            else
+            {
+                Console.WriteLine("Xeque-mate!");
+                Console.WriteLine($"Vencedor: {partida.jogador}");
+            }
         }
         public static void impPecasCapturadas(PartidaDeXadrez partida)
         {

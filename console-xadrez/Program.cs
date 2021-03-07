@@ -34,6 +34,8 @@ namespace console_xadrez
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Tela.impPartida(partida);
             }
             catch (TabuleiroException tEx)
             {
