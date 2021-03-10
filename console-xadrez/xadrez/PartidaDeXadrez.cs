@@ -33,6 +33,24 @@ namespace xadrez
             {
                 capturadas.Add(pecaCapturada);
             }
+            //jogada roque
+            if(p is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);
+                Peca torre = tabu.removerPeca(origemTorre);
+                torre.atualizarQtdMovimentos();
+                tabu.incluirPeca(torre, destinoTorre);
+            }
+            if (p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);
+                Peca torre = tabu.removerPeca(origemTorre);
+                torre.atualizarQtdMovimentos();
+                tabu.incluirPeca(torre, destinoTorre);
+            }
+            //jogada roque
             return pecaCapturada;
         }
         public void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -45,6 +63,25 @@ namespace xadrez
                 capturadas.Remove(pecaCapturada);
             }
             tabu.incluirPeca(dFM, origem);
+            // jogada roque
+            if (dFM is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);
+                Peca torre = tabu.removerPeca(destinoTorre);
+                torre.atualizarQtdMovimentosRetroativo();
+                tabu.incluirPeca(torre, origemTorre);
+            }
+            if (dFM is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);
+                Peca torre = tabu.removerPeca(destinoTorre);
+                torre.atualizarQtdMovimentosRetroativo();
+                tabu.incluirPeca(torre, origemTorre);
+            }
+            // jogada roque
+
         }
         public void movimentoJogada(Posicao origem, Posicao destino)
         {
@@ -211,7 +248,7 @@ namespace xadrez
             colocarNovaPeca('b', 1, new Cavalo(tabu, Cor.Branco));
             colocarNovaPeca('c', 1, new Bispo(tabu, Cor.Branco));
             colocarNovaPeca('d', 1, new Dama(tabu, Cor.Branco));
-            colocarNovaPeca('e', 1, new Rei(tabu, Cor.Branco));
+            colocarNovaPeca('e', 1, new Rei(tabu, Cor.Branco, this));
             colocarNovaPeca('f', 1, new Bispo(tabu, Cor.Branco));
             colocarNovaPeca('g', 1, new Cavalo(tabu, Cor.Branco));
             colocarNovaPeca('h', 1, new Torre(tabu, Cor.Branco));
@@ -228,10 +265,11 @@ namespace xadrez
             colocarNovaPeca('b', 8, new Cavalo(tabu, Cor.Preto));
             colocarNovaPeca('c', 8, new Bispo(tabu, Cor.Preto));
             colocarNovaPeca('d', 8, new Dama(tabu, Cor.Preto));
-            colocarNovaPeca('e', 8, new Rei(tabu, Cor.Preto));
+            colocarNovaPeca('e', 8, new Rei(tabu, Cor.Preto, this));
             colocarNovaPeca('f', 8, new Bispo(tabu, Cor.Preto));
             colocarNovaPeca('g', 8, new Cavalo(tabu, Cor.Preto));
             colocarNovaPeca('h', 8, new Torre(tabu, Cor.Preto));
+            colocarNovaPeca('a', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('b', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('c', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('d', 7, new Peao(tabu, Cor.Preto, this));
