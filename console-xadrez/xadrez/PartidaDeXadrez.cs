@@ -12,12 +12,14 @@ namespace xadrez
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
         public bool xeque { get; private set; }
+        public Peca enPassant { get; private set; }
         public PartidaDeXadrez()
         {
             tabu = new Tabuleiro(8, 8);
             turno = 1;
             jogador = Cor.Branco;
             finalizada = false;
+            enPassant = null;
             xeque = false;
             pecas = new HashSet<Peca>();
             capturadas = new HashSet<Peca>();
@@ -51,6 +53,25 @@ namespace xadrez
                 tabu.incluirPeca(torre, destinoTorre);
             }
             //jogada roque
+            // jogada en passant
+            if(p is Peao)
+            {
+                if (origem.coluna != destino.coluna && pecaCapturada == null)
+                {
+                    Posicao posicaoDoPeao;
+                    if(p.cor == Cor.Branco)
+                    {
+                        posicaoDoPeao = new Posicao(destino.linha + 1, destino.coluna);
+                    }
+                    else
+                    {
+                        posicaoDoPeao = new Posicao(destino.linha - 1, destino.coluna);
+                    }
+                    pecaCapturada = tabu.removerPeca(posicaoDoPeao);
+                    capturadas.Add(pecaCapturada);
+                }
+            }
+            // jogada en passant
             return pecaCapturada;
         }
         public void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -81,6 +102,25 @@ namespace xadrez
                 tabu.incluirPeca(torre, origemTorre);
             }
             // jogada roque
+            // jogada en passant
+            if(dFM is Peao)
+            {
+                if (origem.coluna != destino.coluna && pecaCapturada == enPassant)
+                {
+                    Peca peao = tabu.removerPeca(destino);
+                    Posicao posicaoPeao;
+                    if(dFM.cor == Cor.Branco)
+                    {
+                        posicaoPeao = new Posicao(3, destino.coluna);
+                    }
+                    else
+                    {
+                        posicaoPeao = new Posicao(4, destino.coluna);
+                    }
+                    tabu.incluirPeca(peao, posicaoPeao);
+                }
+            }
+            // jogada en passant
 
         }
         public void movimentoJogada(Posicao origem, Posicao destino)
@@ -109,6 +149,17 @@ namespace xadrez
                 turno++;
                 mudaJogador();
             }
+            // jogada en passant
+            Peca auxPeca = tabu.peca(destino);
+            if(auxPeca is Peca && (destino.linha == origem.linha -2 || destino.linha == origem.linha + 2))
+            {
+                enPassant = auxPeca;
+            }
+            else
+            {
+                enPassant = null;
+            }
+            // jogada en passant
         }
         public void validarOrigem(Posicao pos)
         {

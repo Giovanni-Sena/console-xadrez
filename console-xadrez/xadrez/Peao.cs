@@ -49,6 +49,21 @@ namespace xadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
+                // jogada en passant
+                if(posicao.linha == 3)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if(tabu.posicaoValida(esquerda) && existeInimigo(esquerda) && tabu.peca(esquerda) == partida.enPassant)
+                    {
+                        mat[esquerda.linha - 1, esquerda.coluna] = true;
+                    }
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if (tabu.posicaoValida(direita) && existeInimigo(direita) && tabu.peca(direita) == partida.enPassant)
+                    {
+                        mat[direita.linha - 1, direita.coluna] = true;
+                    }
+                }
+                // jogada en passant
             }
             else
             {
@@ -72,6 +87,21 @@ namespace xadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
+                // jogada en passant
+                if (posicao.linha == 4)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if (tabu.posicaoValida(esquerda) && existeInimigo(esquerda) && tabu.peca(esquerda) == partida.enPassant)
+                    {
+                        mat[esquerda.linha + 1, esquerda.coluna] = true;
+                    }
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if (tabu.posicaoValida(direita) && existeInimigo(direita) && tabu.peca(direita) == partida.enPassant)
+                    {
+                        mat[direita.linha + 1, direita.coluna] = true;
+                    }
+                }
+                // jogada en passant
             }
             return mat;
         }
