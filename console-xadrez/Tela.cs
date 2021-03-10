@@ -37,7 +37,7 @@ namespace console_xadrez
             Console.WriteLine();
             Console.Write($"Preto: ");
             ConsoleColor aux = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             impConjunto(partida.pecasCapturada(Cor.Preto));
             Console.ForegroundColor = aux;
         }
@@ -110,7 +110,7 @@ namespace console_xadrez
                 else
                 {
                     ConsoleColor aux = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.Write(peca);
                     Console.ForegroundColor = aux;
                 }

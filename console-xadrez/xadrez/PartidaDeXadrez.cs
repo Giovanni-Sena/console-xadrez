@@ -15,6 +15,7 @@ namespace xadrez
         public Peca enPassant { get; private set; }
         public PartidaDeXadrez()
         {
+            Console.SetWindowSize(50, 20);
             tabu = new Tabuleiro(8, 8);
             turno = 1;
             jogador = Cor.Branco;
@@ -131,6 +132,20 @@ namespace xadrez
                 desfazerMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Não é possível movimentar, seu rei vai ficar em xeque");
             }
+            Peca auxPeca = tabu.peca(destino);
+            // jogada promoção
+            if (auxPeca is Peao)
+            {
+                if ((auxPeca.cor == Cor.Branco && destino.linha == 0) || (auxPeca.cor == Cor.Preto && destino.linha == 7))
+                {
+                    auxPeca = tabu.removerPeca(destino);
+                    pecas.Remove(auxPeca);
+                    Peca dama = new Dama(tabu, auxPeca.cor);
+                    tabu.incluirPeca(dama, destino);
+                    pecas.Add(dama);
+                }
+            }
+            // jogada promoção
             if (emXeque(adversaria(jogador)))
             {
                 xeque = true;
@@ -150,7 +165,6 @@ namespace xadrez
                 mudaJogador();
             }
             // jogada en passant
-            Peca auxPeca = tabu.peca(destino);
             if(auxPeca is Peca && (destino.linha == origem.linha -2 || destino.linha == origem.linha + 2))
             {
                 enPassant = auxPeca;
@@ -165,7 +179,7 @@ namespace xadrez
         {
             if (tabu.peca(pos) == null)
             {
-                throw new TabuleiroException("Não existe peça na posição de origem!");
+                throw new TabuleiroException($"Não existe peça na posição de origem!");
             }
             if (jogador != tabu.peca(pos).cor)
             {
