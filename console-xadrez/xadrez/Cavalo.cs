@@ -4,7 +4,7 @@ namespace xadrez
 {
     class Cavalo : Peca
     {
-        public Cavalo (Tabuleiro tab, Cor cor) : base (tab, cor)
+        public Cavalo(Tabuleiro tabu, Cor cor) : base (tabu, cor)
         {
         }
         public override string ToString()
@@ -20,43 +20,48 @@ namespace xadrez
         {
             bool[,] mat = new bool[tabu.linhas, tabu.colunas];
             Posicao pos = new Posicao(0, 0);
+
             pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna - 2);
-            if(tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha - 2, posicao.coluna - 1);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            pos.possibilidadeDeMovimentos(posicao.linha - 2, posicao.coluna + 1);
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna + 2);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha + 1, posicao.coluna + 2);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha + 2, posicao.coluna + 1);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha + 2, posicao.coluna - 1);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
             pos.possibilidadeDeMovimentos(posicao.linha + 1, posicao.coluna - 2);
-            if (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            if (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
             return mat;
         }
-        }
+    }
 }

@@ -4,7 +4,7 @@ namespace xadrez
 {
     class Dama : Peca
     {
-        public Dama(Tabuleiro tabu, Cor cor) : base (tabu, cor)
+        public Dama(Tabuleiro tabu, Cor cor) : base(tabu, cor)
         {
         }
         public override string ToString()
@@ -20,20 +20,19 @@ namespace xadrez
         {
             bool[,] mat = new bool[tabu.linhas, tabu.colunas];
             Posicao pos = new Posicao(0, 0);
-            // Posição a esquerda
-            pos.possibilidadeDeMovimentos(pos.linha, pos.coluna - 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+
+            pos.possibilidadeDeMovimentos(posicao.linha, posicao.coluna - 1);
+            while(tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
+                if(tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
                 {
                     break;
                 }
-                pos.possibilidadeDeMovimentos(pos.linha, pos.coluna -1);
+                pos.possibilidadeDeMovimentos(pos.linha, pos.coluna - 1);
             }
-            // Posição a direita
-            pos.possibilidadeDeMovimentos(pos.linha, pos.coluna + 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha, posicao.coluna + 1);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
@@ -42,9 +41,8 @@ namespace xadrez
                 }
                 pos.possibilidadeDeMovimentos(pos.linha, pos.coluna + 1);
             }
-            // Posição superior
-            pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
@@ -53,9 +51,8 @@ namespace xadrez
                 }
                 pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna);
             }
-            // Posição inferior
-            pos.possibilidadeDeMovimentos(pos.linha + 1, pos.coluna);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha + 1, posicao.coluna);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
@@ -64,20 +61,18 @@ namespace xadrez
                 }
                 pos.possibilidadeDeMovimentos(pos.linha + 1, pos.coluna);
             }
-            // Posição diagonal esquerda superior
-            pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna - 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna -1);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
                 {
                     break;
                 }
-                pos.possibilidadeDeMovimentos(pos.linha -1, pos.coluna -1);
+                pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna - 1);
             }
-            // Posição diagonal direita superior
-            pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna + 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha - 1, posicao.coluna + 1);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
@@ -86,9 +81,8 @@ namespace xadrez
                 }
                 pos.possibilidadeDeMovimentos(pos.linha - 1, pos.coluna + 1);
             }
-            // Posição diagonal direita inferior
-            pos.possibilidadeDeMovimentos(pos.linha + 1, pos.coluna + 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha + 1, posicao.coluna + 1);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)
@@ -97,9 +91,8 @@ namespace xadrez
                 }
                 pos.possibilidadeDeMovimentos(pos.linha + 1, pos.coluna + 1);
             }
-            // Posição diagonal esquerda inferior
-            pos.possibilidadeDeMovimentos(pos.linha + 1, pos.coluna - 1);
-            while (tabu.posicaoValida(pos) && podeMoverPara(pos))
+            pos.possibilidadeDeMovimentos(posicao.linha + 1, posicao.coluna - 1);
+            while (tabu.posicaoValida(pos) && validarMovimento(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabu.peca(pos) != null && tabu.peca(pos).cor != cor)

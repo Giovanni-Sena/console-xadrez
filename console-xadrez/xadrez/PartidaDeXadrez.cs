@@ -232,7 +232,6 @@ namespace xadrez
             colocarNovaPeca('f', 8, new Bispo(tabu, Cor.Preto));
             colocarNovaPeca('g', 8, new Cavalo(tabu, Cor.Preto));
             colocarNovaPeca('h', 8, new Torre(tabu, Cor.Preto));
-            colocarNovaPeca('a', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('b', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('c', 7, new Peao(tabu, Cor.Preto, this));
             colocarNovaPeca('d', 7, new Peao(tabu, Cor.Preto, this));
